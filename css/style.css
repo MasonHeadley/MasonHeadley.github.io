@@ -210,5 +210,5 @@ body {
 }
 
 footer {
-  margin-top: auto;   
+  margin-top: auto;   /* pushes footer to bottom when content is short */
 }
