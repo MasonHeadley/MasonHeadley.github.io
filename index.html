@@ -84,15 +84,26 @@
   .frame::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
   .frame::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
 
-  .hero-shade {
-    background:
-      linear-gradient(to top, var(--sheet) 0%, rgba(21,23,26,.72) 28%, rgba(21,23,26,.12) 70%, rgba(21,23,26,.35) 100%),
-      linear-gradient(to right, rgba(21,23,26,.7) 0%, rgba(21,23,26,.25) 55%, rgba(21,23,26,0) 80%),
-      linear-gradient(var(--grid-major) 1px, transparent 1px) 0 0 / 120px 120px,
-      linear-gradient(90deg, var(--grid-major) 1px, transparent 1px) 0 0 / 120px 120px;
+  /* Phones: the photo fills the top of the header and fades out behind the text.
+     Wider screens: the photo fills the whole header behind the text. */
+  .hero-shade { background: linear-gradient(to top, var(--sheet) 0%, var(--sheet) 30%, rgba(21,23,26,.55) 48%, rgba(21,23,26,0) 62%, rgba(21,23,26,.3) 100%); }
+  #slides { -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent); mask-image: linear-gradient(to bottom, #000 75%, transparent); }
+  @media (min-width: 768px) {
+    #slides { -webkit-mask-image: none; mask-image: none; }
+    .hero-shade {
+      background:
+        linear-gradient(to top, var(--sheet) 0%, rgba(21,23,26,.75) 30%, rgba(21,23,26,.1) 65%, rgba(21,23,26,.3) 100%),
+        linear-gradient(to right, rgba(21,23,26,.6) 0%, rgba(21,23,26,.2) 50%, rgba(21,23,26,0) 75%),
+        linear-gradient(var(--grid-major) 1px, transparent 1px) 0 0 / 120px 120px,
+        linear-gradient(90deg, var(--grid-major) 1px, transparent 1px) 0 0 / 120px 120px;
+    }
   }
   #top h1, #top p { text-shadow: 0 1px 12px rgba(0,0,0,.65); }
   .slide { transition: opacity 1.2s ease; }
+  /* Each photo fills the header, cropped around its own focus point (set per photo in the script),
+     with separate points for phone (tall) and wider (wide) screens. */
+  .slide-fg { object-fit: cover; object-position: var(--fp-tall, center); }
+  @media (min-width: 768px) { .slide-fg { object-position: var(--fp-wide, center); } }
   @media (prefers-reduced-motion: reduce) { .slide { transition: none; } }
 </style>
 
@@ -130,9 +141,9 @@
 
 <!-- Hero: photo slideshow in the background, name and summary over it -->
 <section id="top" aria-label="Introduction" class="relative isolate overflow-hidden border-b border-line">
-  <div id="slides" class="absolute inset-0 -z-20" aria-hidden="true"></div>
+  <div id="slides" class="absolute inset-x-0 top-0 -z-20 h-[460px] md:bottom-0 md:h-auto" aria-hidden="true"></div>
   <div class="hero-shade absolute inset-0 -z-10" aria-hidden="true"></div>
-  <div class="gutter relative mx-auto flex min-h-[560px] max-w-6xl flex-col justify-end gap-5 pb-10 pt-24 md:min-h-[620px] md:pb-14">
+  <div class="gutter relative mx-auto flex max-w-6xl flex-col justify-end gap-5 pb-10 pt-[360px] md:min-h-[740px] md:pt-24 md:pb-14">
     <p class="font-mono text-xs uppercase tracking-[0.14em] text-mark">Electrical Engineering · University of Georgia</p>
     <h1 class="font-display text-5xl font-bold uppercase leading-[0.95] sm:text-7xl">Mason Alexander Headley</h1>
     <p class="max-w-[60ch] text-lg">Electrical Engineering student pursuing a Computer Science minor and an Aerospace Engineering certificate, with a Private Pilot Certificate and hands-on industry experience in electrical systems, engineering design and manufacturing, CAD, programming, and avionics.</p>
@@ -392,10 +403,20 @@
 
   // Background slideshow
   (function () {
+    // [file, focus on phones, focus on wider screens] keeps the whole subject in frame when cropped
     var photos = [
-      'img/photo-01.jpg', 'img/photo-02.jpg', 'img/photo-03.jpg', 'img/photo-04.jpg',
-      'img/photo-05.jpg', 'img/photo-06.jpg', 'img/photo-07.jpg', 'img/photo-08.jpg',
-      'img/photo-09.jpg', 'img/photo-10.jpg', 'img/photo-11.jpg', 'img/photo-12.jpg'
+      ['img/photo-01.jpg', '55% 50%', '50% 50%'],
+      ['img/photo-02.jpg', '50% 50%', '50% 52%'],
+      ['img/photo-03.jpg', '30% 60%', '50% 88%'],
+      ['img/photo-04.jpg', '55% 50%', '50% 48%'],
+      ['img/photo-05.jpg', '50% 40%', '50% 32%'],
+      ['img/photo-06.jpg', '50% 40%', '50% 32%'],
+      ['img/photo-07.jpg', '35% 50%', '50% 40%'],
+      ['img/photo-08.jpg', '55% 40%', '50% 30%'],
+      ['img/photo-09.jpg', '45% 50%', '50% 42%'],
+      ['img/photo-10.jpg', '50% 60%', '50% 62%'],
+      ['img/photo-11.jpg', '50% 45%', '50% 22%'],
+      ['img/photo-12.jpg', '35% 40%', '50% 45%']
     ];
     var box = document.getElementById('slides');
     var hero = document.getElementById('top');
@@ -406,11 +427,12 @@
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var i = 0, timer = null, playing = !reduce, slides = [];
 
-    photos.forEach(function (src, n) {
+    photos.forEach(function (p, n) {
       var img = document.createElement('img');
-      img.src = src; img.alt = '';
-      img.className = 'slide absolute inset-0 h-full w-full object-cover ' + (n === 0 ? 'opacity-100' : 'opacity-0');
-      img.style.objectPosition = 'center 30%';
+      img.src = p[0]; img.alt = '';
+      img.className = 'slide slide-fg absolute inset-0 h-full w-full ' + (n === 0 ? 'opacity-100' : 'opacity-0');
+      img.style.setProperty('--fp-tall', p[1]);
+      img.style.setProperty('--fp-wide', p[2]);
       if (n > 1) img.loading = 'lazy';
       box.appendChild(img); slides.push(img);
     });
