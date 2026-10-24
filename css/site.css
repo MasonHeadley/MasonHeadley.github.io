@@ -1,0 +1,103 @@
+/* Layout: a dark drafting sheet. Grid paper ground, a sticky title bar, one content column, and a drawing title block as the footer.
+   Single dark theme by design. Shared by every page. */
+:root {
+  --sheet: #15171a;      /* graphite drafting film */
+  --panel: #1c1f23;
+  --well: #101215;       /* behind photos in carousels */
+  --ink: #e7e3d8;        /* pencil-white linework */
+  --dim: #9a9a92;
+  --line: #34383e;
+  --grid: rgba(231, 227, 216, 0.045);
+  --grid-major: rgba(231, 227, 216, 0.085);
+  --mark: #e3a53c;       /* drafting amber, used for callouts */
+  color-scheme: dark;
+}
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background-color: var(--sheet);
+  background-image:
+    linear-gradient(var(--grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+  color: var(--ink);
+  font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+img { max-width: 100%; }
+.gutter {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+section[id], article[id] { scroll-margin-top: 84px; }
+h1, h2, h3 { text-wrap: balance; }
+:focus-visible { outline: 2px solid var(--mark); outline-offset: 3px; }
+
+/* Section heading drawn as a dimension line: |<—— label ——>| */
+.dim-head { display: flex; align-items: center; gap: 12px; }
+.dim-head::before, .dim-head::after {
+  content: ""; flex: 1; height: 1px; background: var(--dim); opacity: .55;
+}
+.dim-head::before { max-width: 28px; }
+.dim-wrap { position: relative; padding-inline: 8px; }
+.dim-wrap::before, .dim-wrap::after {
+  content: ""; position: absolute; top: 50%; width: 1px; height: 18px; background: var(--dim); opacity: .55; transform: translateY(-50%);
+}
+.dim-wrap::before { left: 0; }
+.dim-wrap::after { right: 0; }
+
+/* Corner registration ticks on drawn frames */
+.frame { position: relative; border: 1px solid var(--line); background: var(--panel); }
+.frame::before, .frame::after {
+  content: ""; position: absolute; width: 10px; height: 10px; border-color: var(--mark); border-style: solid; pointer-events: none; z-index: 2;
+}
+.frame::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.frame::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+/* Homepage hero.
+   Phones: the photo fills the top of the header and fades out behind the text.
+   Wider screens: the photo fills the whole header behind the text. */
+.hero-shade { background: linear-gradient(to top, var(--sheet) 0%, var(--sheet) 30%, rgba(21,23,26,.55) 48%, rgba(21,23,26,0) 62%, rgba(21,23,26,.3) 100%); }
+#slides { -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent); mask-image: linear-gradient(to bottom, #000 75%, transparent); }
+@media (min-width: 768px) {
+  #slides { -webkit-mask-image: none; mask-image: none; }
+  .hero-shade {
+    background:
+      linear-gradient(to top, var(--sheet) 0%, rgba(21,23,26,.75) 30%, rgba(21,23,26,.1) 65%, rgba(21,23,26,.3) 100%),
+      linear-gradient(to right, rgba(21,23,26,.6) 0%, rgba(21,23,26,.2) 50%, rgba(21,23,26,0) 75%),
+      linear-gradient(var(--grid-major) 1px, transparent 1px) 0 0 / 120px 120px,
+      linear-gradient(90deg, var(--grid-major) 1px, transparent 1px) 0 0 / 120px 120px;
+  }
+}
+#top h1, #top p { text-shadow: 0 1px 12px rgba(0,0,0,.65); }
+.slide { transition: opacity 1.2s ease; }
+/* Each photo fills the header, cropped around its own focus point (set per photo in the script),
+   with separate points for phone (tall) and wider (wide) screens. */
+.slide-fg { object-fit: cover; object-position: var(--fp-tall, center); }
+@media (min-width: 768px) { .slide-fg { object-position: var(--fp-wide, center); } }
+
+/* Project photo carousels: whole photo always shown, never cropped */
+.carousel-track {
+  display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+  background: var(--well);
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-slide { flex: 0 0 100%; scroll-snap-align: start; margin: 0; display: flex; flex-direction: column; }
+.carousel-slide .shot { aspect-ratio: 4 / 3; overflow: hidden; width: 100%; max-width: 100%; display: flex; align-items: center; justify-content: center; }
+.carousel-slide img, .carousel-slide video { width: 100%; height: 100%; object-fit: contain; }
+
+/* Placeholder for a project without photos yet: an empty drawing view */
+.placeholder {
+  aspect-ratio: 4 / 3; max-width: 100%; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 14px, rgba(231,227,216,.05) 14px 15px),
+    var(--well);
+  color: var(--dim);
+}
+
+@media (prefers-reduced-motion: reduce) { .slide { transition: none; } .carousel-track { scroll-behavior: auto; } }

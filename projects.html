@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects · Mason Headley</title>
+<meta name="description" content="Projects by Mason Headley: Ember robot dragon room assistant, RC airboat, AIAA RC Planes Club, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="js/tw-config.js"></script>
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+<!-- Title bar -->
+<header class="sticky z-40 border-b border-line bg-sheet" style="top: env(safe-area-inset-top, 0px)">
+  <div class="gutter mx-auto flex h-16 max-w-6xl items-center justify-between gap-4">
+    <a href="index.html" class="flex items-baseline gap-3 no-underline">
+      <span class="font-display text-2xl font-bold uppercase tracking-wide text-ink">Mason Headley</span>
+      <span class="hidden font-mono text-[11px] uppercase tracking-[0.14em] text-dim sm:inline">B.S. EE · UGA · 2028</span>
+    </a>
+    <nav class="hidden md:block" aria-label="Site">
+      <ul class="flex items-center gap-1 font-mono text-[13px] uppercase tracking-[0.1em]">
+        <li><a class="nav-link rounded px-3 py-2 text-dim hover:text-ink" href="index.html#experience">Experience</a></li>
+        <li><a class="rounded px-3 py-2 text-mark" href="projects.html" aria-current="page">Projects</a></li>
+        <li><a class="nav-link rounded px-3 py-2 text-dim hover:text-ink" href="index.html#education">Education</a></li>
+        <li><a class="nav-link rounded px-3 py-2 text-dim hover:text-ink" href="index.html#skills">Skills</a></li>
+        <li><a class="ml-2 rounded border border-mark px-3 py-2 text-mark hover:bg-mark hover:text-sheet" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <button id="menu-btn" type="button" class="md:hidden -mr-2 flex h-11 w-11 items-center justify-center rounded text-ink" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg id="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg id="icon-close" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <nav id="mobile-menu" class="hidden border-t border-line bg-sheet md:hidden" aria-label="Site">
+    <ul class="gutter flex flex-col py-2 font-mono text-sm uppercase tracking-[0.1em]">
+      <li><a class="block py-3 text-ink" href="index.html#experience">Experience</a></li>
+      <li><a class="block border-t border-line py-3 text-mark" href="projects.html" aria-current="page">Projects</a></li>
+      <li><a class="block border-t border-line py-3 text-ink" href="index.html#education">Education</a></li>
+      <li><a class="block border-t border-line py-3 text-ink" href="index.html#skills">Skills</a></li>
+      <li><a class="block border-t border-line py-3 text-mark" href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="gutter mx-auto flex max-w-6xl flex-col gap-12 pb-16 pt-12">
+  <div class="flex flex-col gap-5">
+    <p class="font-mono text-xs uppercase tracking-[0.14em] text-mark">Projects · built and in progress</p>
+    <h1 class="font-display text-5xl font-bold uppercase leading-[0.95] sm:text-6xl">Projects</h1>
+    <ul class="flex flex-wrap gap-2 font-mono text-xs uppercase tracking-[0.08em]" aria-label="Jump to a project">
+      <li><a class="block border border-line px-3 py-1.5 text-dim hover:border-mark hover:text-mark" href="#ember">Ember</a></li>
+      <li><a class="block border border-line px-3 py-1.5 text-dim hover:border-mark hover:text-mark" href="#airboat">RC airboat</a></li>
+      <li><a class="block border border-line px-3 py-1.5 text-dim hover:border-mark hover:text-mark" href="#rc-planes-club">AIAA RC Planes Club</a></li>
+      <li><a class="block border border-line px-3 py-1.5 text-dim hover:border-mark hover:text-mark" href="#design-build-fly">AIAA Design/Build/Fly</a></li>
+      <li><a class="block border border-line px-3 py-1.5 text-dim hover:border-mark hover:text-mark" href="#rc-plane-fpv">RC plane avionics &amp; FPV</a></li>
+      <li><a class="block border border-line px-3 py-1.5 text-dim hover:border-mark hover:text-mark" href="#rc-trucks">RC trucks</a></li>
+      <li><a class="block border border-line px-3 py-1.5 text-dim hover:border-mark hover:text-mark" href="#3d-printed-props">3D printing props</a></li>
+      <li><a class="block border border-line px-3 py-1.5 text-dim hover:border-mark hover:text-mark" href="#realsteel">REALSTEEL</a></li>
+    </ul>
+  </div>
+
+  <article id="ember" class="grid gap-6 border-t border-line pt-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-8">
+    <div class="flex min-w-0 flex-col gap-3 lg:order-2">
+      <div class="flex flex-wrap items-center gap-3">
+        <h2 class="font-display text-4xl font-semibold leading-tight">Ember: robot dragon room assistant</h2>
+        <span class="rounded-full border border-mark px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-mark">Working prototype</span>
+      </div>
+      <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Personal project · Started Oct 2026</p>
+      <p>Ember is a desk companion built around a Raspberry Pi 5. She listens for her name, holds spoken conversations in a sarcastic dragon persona, and runs the room: wake-up alarms, timers, reminders, Spotify, a daily calendar and email brief, and a live camera feed. Her core features run on home hardware with no subscriptions or cloud accounts. A Windows companion app hands the heavy processing to my desktop graphics card when the PC is on, and the Pi takes over on its own when it is off.</p>
+      <h3 class="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-mark">What I built</h3>
+      <ul class="list-disc space-y-1.5 pl-5 marker:text-mark">
+        <li>Speech recognition, a local language model and text-to-speech running entirely on home hardware (faster-whisper, llama.cpp with Gemma 3 on the Pi, Ollama with Gemma 3 12B on the PC, Piper).</li>
+        <li>About 4,400 lines of Python across two apps: a Linux service with an HTTP API and phone web dashboard, and a Windows system-tray companion app.</li>
+        <li>GPU offload over the local network that brings speech-to-text under 1 second, with automatic fallback to the Pi when the PC is off.</li>
+        <li>Integrations with the Spotify Web API (OAuth 2.0 with PKCE), Gmail over IMAP, iCal calendars, weather data and ntfy push notifications.</li>
+        <li>An audio pipeline: USB mic array with echo cancellation, wake-word detection, a robot voice effects chain (Piper + SoX), and a Spotify Connect speaker running as its own systemd service.</li>
+        <li>A heavy-sleeper alarm that escalates in volume, needs a generated math problem solved to shut off, sends phone alerts, and uses the camera to check that I actually got out of bed.</li>
+        <li>Headless Linux administration: SSH, systemd services, ALSA audio routing, NetworkManager Wi-Fi failover, camera setup and a real-time clock.</li>
+        <li>Colorblind-safe status indicators that use patterns, blinking and blue/yellow instead of red/green.</li>
+      </ul>
+      <h3 class="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-mark">In progress</h3>
+      <ul class="list-disc space-y-1.5 pl-5 marker:text-mark">
+        <li>A 3D-printed robot dragon head with one flexible screen arcing cheek to cheek for her eyes, brows and mouth. The camera is the nose.</li>
+        <li>A wooden shelf base that houses the Pi, amplifier and speakers, running from a single wall cord (12 V supply with 5 V buck converters).</li>
+        <li>Speaker upgrade: ZK-TB21 2.1 amplifier with two Dayton Audio PC83-8 drivers in sealed chambers. PLA test pods are designed in CadQuery.</li>
+        <li>An ESP32-S3 over USB to drive the face screen, servos and LEDs.</li>
+        <li>Vision and security: Hailo-8L accelerator, Frigate motion detection, face recognition, 940 nm infrared night vision, and private remote access through Tailscale.</li>
+      </ul>
+      <dl class="mt-2 grid grid-cols-2 gap-px border border-line bg-line font-mono text-[11px] uppercase tracking-[0.08em]">
+        <div class="bg-panel p-3"><dt class="text-dim">Compute</dt><dd class="mt-1 normal-case tracking-normal text-ink">Raspberry Pi 5 (8 GB)</dd></div>
+        <div class="bg-panel p-3"><dt class="text-dim">Microphone</dt><dd class="mt-1 normal-case tracking-normal text-ink">ReSpeaker Lite 2-mic array</dd></div>
+        <div class="bg-panel p-3"><dt class="text-dim">Camera</dt><dd class="mt-1 normal-case tracking-normal text-ink">Camera Module 3 NoIR</dd></div>
+        <div class="bg-panel p-3"><dt class="text-dim">Helper</dt><dd class="mt-1 normal-case tracking-normal text-ink">Windows PC with GPU</dd></div>
+      </dl>
+    </div>
+    <div class="min-w-0 lg:order-1 lg:sticky lg:top-24 lg:self-start">
+      <div class="frame flex min-w-0 flex-col" data-carousel>
+        <div class="carousel-track" tabindex="0" role="region" aria-label="Ember photos, use the arrow keys to move between them">
+          <figure class="carousel-slide" data-caption="Hardware before the enclosure: Raspberry Pi 5, ReSpeaker Lite mic array, Camera Module 3 NoIR and the speaker bar"><div class="shot"><img src="img/projects/ember-hardware.jpg" alt="Hardware before the enclosure: Raspberry Pi 5, ReSpeaker Lite mic array, Camera Module 3 NoIR and the speaker bar"></div></figure>
+          <figure class="carousel-slide" data-caption="Companion app, Alarms tab: escalating wake-up alarm, math-question shutoff and a camera bed check"><div class="shot"><img src="img/projects/ember-app-alarms.png" alt="Companion app, Alarms tab: escalating wake-up alarm, math-question shutoff and a camera bed check" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Companion app, Brain tab: choose whether the PC or the Pi does the thinking, with a lighter model while gaming"><div class="shot"><img src="img/projects/ember-app-brain.png" alt="Companion app, Brain tab: choose whether the PC or the Pi does the thinking, with a lighter model while gaming" loading="lazy"></div></figure>
+        </div>
+        <div class="flex items-center gap-2 border-t border-line p-3">
+          <button type="button" data-prev class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Previous photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button type="button" data-next class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Next photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <span data-count class="shrink-0 font-mono text-xs tabular-nums text-dim"></span>
+          <p data-caption-text class="min-w-0 text-sm text-dim" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="airboat" class="grid gap-6 border-t border-line pt-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-8">
+    <div class="flex min-w-0 flex-col gap-3 lg:order-2">
+      <div class="flex flex-wrap items-center gap-3">
+        <h2 class="font-display text-4xl font-semibold leading-tight">RC airboat</h2>
+        <span class="rounded-full border border-mark px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-mark">V2 in design</span>
+      </div>
+      <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Personal project · SolidWorks, 3D printing</p>
+      <p>I started by 3D printing a design I downloaded online as a proof of concept before designing my own.</p>
+      <h3 class="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-mark">V1: my own design</h3>
+      <p>I designed V1 in SolidWorks as a twin-hull tunnel catamaran for better control once the boat is on plane, with strakes along the hull sides for control and a battery cover that is easier to remove.</p>
+      <h3 class="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-mark">What testing showed</h3>
+      <p>On the water, V1 had trouble getting up on plane. The bow had low displacement, and an airboat’s thrust line sits high, so the fan pushed the bow down instead of lifting it.</p>
+      <h3 class="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-mark">V2: in design</h3>
+      <ul class="list-disc space-y-1.5 pl-5 marker:text-mark">
+        <li>A longer, deeper main hull that starts further up the bow, so the boat climbs onto plane instead of dunking the bow.</li>
+        <li>A planing surface joining the two bow points that pushes water down, so the water pushes the bow up (Newton’s third law).</li>
+        <li>A better-sealed battery hatch to keep splash out.</li>
+      </ul>
+      <dl class="mt-2 grid grid-cols-2 gap-px border border-line bg-line font-mono text-[11px] uppercase tracking-[0.08em]">
+        <div class="bg-panel p-3"><dt class="text-dim">CAD</dt><dd class="mt-1 normal-case tracking-normal text-ink">SolidWorks</dd></div>
+        <div class="bg-panel p-3"><dt class="text-dim">Build</dt><dd class="mt-1 normal-case tracking-normal text-ink">3D printed</dd></div>
+        <div class="bg-panel p-3"><dt class="text-dim">Hull</dt><dd class="mt-1 normal-case tracking-normal text-ink">Twin-hull tunnel</dd></div>
+        <div class="bg-panel p-3"><dt class="text-dim">Drive</dt><dd class="mt-1 normal-case tracking-normal text-ink">Air propeller</dd></div>
+      </dl>
+    </div>
+    <div class="min-w-0 lg:order-1 lg:sticky lg:top-24 lg:self-start">
+      <div class="frame flex min-w-0 flex-col" data-carousel>
+        <div class="carousel-track" tabindex="0" role="region" aria-label="RC airboat photos, use the arrow keys to move between them">
+          <figure class="carousel-slide" data-caption="V1, my SolidWorks design: twin-hull tunnel catamaran"><div class="shot"><img src="img/projects/airboat-v1-1.jpg" alt="V1, my SolidWorks design: twin-hull tunnel catamaran"></div></figure>
+          <figure class="carousel-slide" data-caption="V1 rear: fan guard, motor mount and rudder"><div class="shot"><img src="img/projects/airboat-v1-2.jpg" alt="V1 rear: fan guard, motor mount and rudder" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="V1 with the battery cover off"><div class="shot"><img src="img/projects/airboat-v1-3.jpg" alt="V1 with the battery cover off" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="V1 battery bay and power connector"><div class="shot"><img src="img/projects/airboat-v1-4.jpg" alt="V1 battery bay and power connector" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Early hull model in SolidWorks"><div class="shot"><img src="img/projects/airboat-cad-early-1.jpg" alt="Early hull model in SolidWorks" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Early model, bow view of the twin hulls"><div class="shot"><img src="img/projects/airboat-cad-early-2.jpg" alt="Early model, bow view of the twin hulls" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="V1 medium-depth hull, section view"><div class="shot"><img src="img/projects/airboat-cad-v1-1.jpg" alt="V1 medium-depth hull, section view" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="V1 assembly, wireframe of the battery bay"><div class="shot"><img src="img/projects/airboat-cad-v1-2.jpg" alt="V1 assembly, wireframe of the battery bay" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="V2 hull compared with the previous iteration"><div class="shot"><img src="img/projects/airboat-cad-v2-1.jpg" alt="V2 hull compared with the previous iteration" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="V2 assembly, top view with battery hatch"><div class="shot"><img src="img/projects/airboat-cad-v2-2.jpg" alt="V2 assembly, top view with battery hatch" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="V2 side view"><div class="shot"><img src="img/projects/airboat-cad-v2-3.jpg" alt="V2 side view" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="V2 rear, inside view"><div class="shot"><img src="img/projects/airboat-cad-v2-4.jpg" alt="V2 rear, inside view" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="V2 assembly, angled view"><div class="shot"><img src="img/projects/airboat-cad-v2-5.jpg" alt="V2 assembly, angled view" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Test print of a downloaded design (proof of concept)"><div class="shot"><img src="img/projects/airboat-test-1.jpg" alt="Test print of a downloaded design (proof of concept)" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Test print, side view"><div class="shot"><img src="img/projects/airboat-test-2.jpg" alt="Test print, side view" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Test print electronics: receiver, speed controller and batteries"><div class="shot"><img src="img/projects/airboat-test-3.jpg" alt="Test print electronics: receiver, speed controller and batteries" loading="lazy"></div></figure>
+        </div>
+        <div class="flex items-center gap-2 border-t border-line p-3">
+          <button type="button" data-prev class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Previous photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button type="button" data-next class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Next photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <span data-count class="shrink-0 font-mono text-xs tabular-nums text-dim"></span>
+          <p data-caption-text class="min-w-0 text-sm text-dim" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="rc-planes-club" class="grid gap-6 border-t border-line pt-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-8">
+    <div class="flex min-w-0 flex-col gap-3 lg:order-2">
+      <div class="flex flex-wrap items-center gap-3">
+        <h2 class="font-display text-4xl font-semibold leading-tight">AIAA RC Planes Club</h2>
+        <span class="rounded-full border border-mark px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-mark">Ongoing</span>
+      </div>
+      <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Team Lead · 3 years</p>
+      <p>I was put in charge of the club after one semester as a member. I reworked how the club runs to draw in more members and teach more UGA students about RC planes, real-world design, avionics, and structures.</p>
+      <ul class="list-disc space-y-1.5 pl-5 marker:text-mark">
+        <li>Grew active membership from 5 to more than 30.</li>
+      </ul>
+    </div>
+    <div class="min-w-0 lg:order-1 lg:sticky lg:top-24 lg:self-start">
+      <div class="frame flex min-w-0 flex-col" data-carousel>
+        <div class="carousel-track" tabindex="0" role="region" aria-label="RC Planes Club photos, use the arrow keys to move between them">
+          <figure class="carousel-slide" data-caption="Club members with their planes"><div class="shot"><img src="img/photo-02.jpg" alt="Club members with their planes"></div></figure>
+          <figure class="carousel-slide" data-caption="A finished club plane"><div class="shot"><img src="img/projects/club-pink-camo-plane.jpg" alt="A finished club plane" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Club build in progress: foam-board wing and tail on a cardboard fuselage"><div class="shot"><img src="img/projects/club-white-plane-build.jpg" alt="Club build in progress: foam-board wing and tail on a cardboard fuselage" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="A foam-board club plane ready for electronics"><div class="shot"><img src="img/projects/club-white-foam-plane.jpg" alt="A foam-board club plane ready for electronics" loading="lazy"></div></figure>
+        </div>
+        <div class="flex items-center gap-2 border-t border-line p-3">
+          <button type="button" data-prev class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Previous photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button type="button" data-next class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Next photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <span data-count class="shrink-0 font-mono text-xs tabular-nums text-dim"></span>
+          <p data-caption-text class="min-w-0 text-sm text-dim" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="design-build-fly" class="grid gap-6 border-t border-line pt-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-8">
+    <div class="flex min-w-0 flex-col gap-3 lg:order-2">
+      <div class="flex flex-wrap items-center gap-3">
+        <h2 class="font-display text-4xl font-semibold leading-tight">AIAA Design/Build/Fly</h2>
+        
+      </div>
+      <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Avionics Sub-Team Lead</p>
+      <p>Collaborated on avionics design and testing.</p>
+    </div>
+    <div class="min-w-0 lg:order-1 lg:sticky lg:top-24 lg:self-start">
+      <div class="frame flex min-w-0 flex-col" data-carousel>
+        <div class="carousel-track" tabindex="0" role="region" aria-label="Design/Build/Fly photos, use the arrow keys to move between them">
+          <figure class="carousel-slide" data-caption="Banner drag profile testing with the team"><div class="shot"><img src="img/projects/dbf-banner-test.jpg" alt="Banner drag profile testing with the team"></div></figure>
+        </div>
+        <div class="flex items-center gap-2 border-t border-line p-3">
+          <button type="button" data-prev class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Previous photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button type="button" data-next class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Next photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <span data-count class="shrink-0 font-mono text-xs tabular-nums text-dim"></span>
+          <p data-caption-text class="min-w-0 text-sm text-dim" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="rc-plane-fpv" class="grid gap-6 border-t border-line pt-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-8">
+    <div class="flex min-w-0 flex-col gap-3 lg:order-2">
+      <div class="flex flex-wrap items-center gap-3">
+        <h2 class="font-display text-4xl font-semibold leading-tight">RC plane avionics &amp; FPV</h2>
+        
+      </div>
+      <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Personal project</p>
+      <p>Building and installing the avionics and an FPV system in RC planes. There are two builds so far.</p>
+      <h3 class="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-mark">Twin-engine</h3>
+      <p>A large twin-engine plane. I installed and wired the electronics, labeling every lead (ailerons, elevator, motors, 5 V BEC) before closing it up, then took it from bench testing to a taxi test to flying.</p>
+      <h3 class="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-mark">P-40 FPV</h3>
+      <p>A smaller P-40 with an FPV camera on a 3D-printed mount. It streams a first-person view with live flight data on screen.</p>
+    </div>
+    <div class="min-w-0 lg:order-1 lg:sticky lg:top-24 lg:self-start">
+      <div class="frame flex min-w-0 flex-col" data-carousel>
+        <div class="carousel-track" tabindex="0" role="region" aria-label="RC plane avionics and FPV photos, use the arrow keys to move between them">
+          <figure class="carousel-slide" data-caption="Twin-engine plane in flight"><div class="shot"><img src="img/projects/fpv-twin-flying.jpg" alt="Twin-engine plane in flight"></div></figure>
+          <figure class="carousel-slide" data-caption="Twin-engine taxi test"><div class="shot"><img src="img/projects/fpv-twin-taxi-test.jpg" alt="Twin-engine taxi test" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Twin-engine electronics bay, every lead labeled before closing it up"><div class="shot"><img src="img/projects/fpv-twin-wiring-labels.jpg" alt="Twin-engine electronics bay, every lead labeled before closing it up" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Flyby of the finished twin-engine (video)"><div class="shot"><video src="video/twin-flyby.mp4" poster="img/projects/twin-flyby-poster.jpg" controls playsinline preload="none" aria-label="Flyby of the finished twin-engine (video)"></video></div></figure>
+          <figure class="carousel-slide" data-caption="Twin-engine bench test with the radio (video)"><div class="shot"><video src="video/twin-bench-test.mp4" poster="img/projects/twin-bench-test-poster.jpg" controls playsinline preload="none" aria-label="Twin-engine bench test with the radio (video)"></video></div></figure>
+          <figure class="carousel-slide" data-caption="First-person view from the P-40, with flight data on screen"><div class="shot"><img src="img/projects/fpv-p40-onboard-view.jpg" alt="First-person view from the P-40, with flight data on screen" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="P-40 with its FPV camera on a 3D-printed mount"><div class="shot"><img src="img/projects/fpv-plane-printed-kit.jpg" alt="P-40 with its FPV camera on a 3D-printed mount" loading="lazy"></div></figure>
+        </div>
+        <div class="flex items-center gap-2 border-t border-line p-3">
+          <button type="button" data-prev class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Previous photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button type="button" data-next class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Next photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <span data-count class="shrink-0 font-mono text-xs tabular-nums text-dim"></span>
+          <p data-caption-text class="min-w-0 text-sm text-dim" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="rc-trucks" class="grid gap-6 border-t border-line pt-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-8">
+    <div class="flex min-w-0 flex-col gap-3 lg:order-2">
+      <div class="flex flex-wrap items-center gap-3">
+        <h2 class="font-display text-4xl font-semibold leading-tight">RC trucks</h2>
+        
+      </div>
+      <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Personal project</p>
+      <p>Building, modifying, and racing RC trucks.</p>
+      <ul class="list-disc space-y-1.5 pl-5 marker:text-mark">
+        <li>Helion Dominus 4x4: swapped out the electronics and painted a new body.</li>
+        <li>HPI Wheelie King solid-axle monster truck: repaired it and installed a new motor and rear axle differential.</li>
+      </ul>
+    </div>
+    <div class="min-w-0 lg:order-1 lg:sticky lg:top-24 lg:self-start">
+      <div class="frame flex min-w-0 flex-col" data-carousel>
+        <div class="carousel-track" tabindex="0" role="region" aria-label="RC trucks photos, use the arrow keys to move between them">
+          <figure class="carousel-slide" data-caption="Helion Dominus 4x4 with new electronics and a body I painted"><div class="shot"><img src="img/projects/truck-raptor-body.jpg" alt="Helion Dominus 4x4 with new electronics and a body I painted"></div></figure>
+          <figure class="carousel-slide" data-caption="HPI Wheelie King: new motor installed during the repair"><div class="shot"><img src="img/projects/truck-chassis-closeup.jpg" alt="HPI Wheelie King: new motor installed during the repair" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="HPI Wheelie King solid-axle monster truck, side view"><div class="shot"><img src="img/projects/truck-chassis-side.jpg" alt="HPI Wheelie King solid-axle monster truck, side view" loading="lazy"></div></figure>
+        </div>
+        <div class="flex items-center gap-2 border-t border-line p-3">
+          <button type="button" data-prev class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Previous photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button type="button" data-next class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Next photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <span data-count class="shrink-0 font-mono text-xs tabular-nums text-dim"></span>
+          <p data-caption-text class="min-w-0 text-sm text-dim" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="3d-printed-props" class="grid gap-6 border-t border-line pt-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-8">
+    <div class="flex min-w-0 flex-col gap-3 lg:order-2">
+      <div class="flex flex-wrap items-center gap-3">
+        <h2 class="font-display text-4xl font-semibold leading-tight">3D printing props</h2>
+        
+      </div>
+      <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Personal project · 3D printing, finishing, painting</p>
+      <p>Replica helmets and props printed from downloaded models. My work is the craftsmanship: printing and finishing, masking, painting, and detailing.</p>
+      <ul class="list-disc space-y-1.5 pl-5 marker:text-mark">
+        <li>Star Wars Phase 2 clone helmets: Commander Sinker and the Coruscant Guard.</li>
+        <li>Helldivers 2 B-01 helmet.</li>
+        <li>Titanfall 2 R-201 rifle (in progress): magnets for swappable magazines and a moving, spring-loaded charging handle.</li>
+      </ul>
+    </div>
+    <div class="min-w-0 lg:order-1 lg:sticky lg:top-24 lg:self-start">
+      <div class="frame flex min-w-0 flex-col" data-carousel>
+        <div class="carousel-track" tabindex="0" role="region" aria-label="3D printing props photos, use the arrow keys to move between them">
+          <figure class="carousel-slide" data-caption="Phase 2 clone trooper helmet in Commander Sinker’s markings"><div class="shot"><img src="img/projects/helmet-sinker-phase2.jpg" alt="Phase 2 clone trooper helmet in Commander Sinker’s markings"></div></figure>
+          <figure class="carousel-slide" data-caption="Helldivers 2 B-01 helmet"><div class="shot"><img src="img/projects/helmet-helldivers-b01.jpg" alt="Helldivers 2 B-01 helmet" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Phase 2 Coruscant Guard clone helmet"><div class="shot"><img src="img/projects/helmet-coruscant-guard-phase2.jpg" alt="Phase 2 Coruscant Guard clone helmet" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Coruscant Guard helmet masked for painting"><div class="shot"><img src="img/projects/helmet-coruscant-guard-masking.jpg" alt="Coruscant Guard helmet masked for painting" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Titanfall 2 R-201, primed (in progress)"><div class="shot"><img src="img/projects/prop-r201-primed.jpg" alt="Titanfall 2 R-201, primed (in progress)" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="R-201 assembled before priming"><div class="shot"><img src="img/projects/prop-r201-assembled.jpg" alt="R-201 assembled before priming" loading="lazy"></div></figure>
+        </div>
+        <div class="flex items-center gap-2 border-t border-line p-3">
+          <button type="button" data-prev class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Previous photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button type="button" data-next class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Next photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <span data-count class="shrink-0 font-mono text-xs tabular-nums text-dim"></span>
+          <p data-caption-text class="min-w-0 text-sm text-dim" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="realsteel" class="grid gap-6 border-t border-line pt-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-8">
+    <div class="flex min-w-0 flex-col gap-3 lg:order-2">
+      <div class="flex flex-wrap items-center gap-3">
+        <h2 class="font-display text-4xl font-semibold leading-tight">REALSTEEL</h2>
+        <span class="rounded-full border border-mark px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-mark">In progress</span>
+      </div>
+      <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Personal project · Game design and direction · Godot</p>
+      <p>An online team tank game for PC, built in the Godot engine with Steam lobbies. The code was written with an AI coding assistant, as a creative exercise and a test of what AI can do. I designed and directed it.</p>
+      <h3 class="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-mark">My role</h3>
+      <ul class="list-disc space-y-1.5 pl-5 marker:text-mark">
+        <li>Game design and direction: vehicles, roles, modes, the look, and how every feature should feel.</li>
+        <li>Weapon audio: found and recorded the gun sounds, with inside-the-tank and outside versions.</li>
+        <li>Playtesting: ran test rounds with a friend over Steam and fed back what to change after each one.</li>
+        <li>Builds and releases to testers.</li>
+      </ul>
+      <h3 class="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-mark">Playable now</h3>
+      <ul class="list-disc space-y-1.5 pl-5 marker:text-mark">
+        <li>8 tanks in three roles, two anti-air vehicles, 6 aircraft, and 5 infantry classes.</li>
+        <li>Push, Deathmatch and Domination modes, plus a firing range.</li>
+        <li>Armour penetration with angles and ricochets, and separate engine, track and gun damage.</li>
+      </ul>
+      <h3 class="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-mark">Still to do</h3>
+      <ul class="list-disc space-y-1.5 pl-5 marker:text-mark">
+        <li>More maps, reworked cockpits, and replacing placeholder voice lines.</li>
+      </ul>
+    </div>
+    <div class="min-w-0 lg:order-1 lg:sticky lg:top-24 lg:self-start">
+      <div class="frame flex min-w-0 flex-col" data-carousel>
+        <div class="carousel-track" tabindex="0" role="region" aria-label="REALSTEEL photos, use the arrow keys to move between them">
+          <figure class="carousel-slide" data-caption="A tank firing at dusk"><div class="shot"><img src="img/projects/realsteel-dusk-gun.jpg" alt="A tank firing at dusk"></div></figure>
+          <figure class="carousel-slide" data-caption="Tanks and infantry pushing through the town map"><div class="shot"><img src="img/projects/realsteel-armour-column.jpg" alt="Tanks and infantry pushing through the town map" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Helicopter and jet dodging missiles over the town"><div class="shot"><img src="img/projects/realsteel-air-defence.jpg" alt="Helicopter and jet dodging missiles over the town" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Gepard anti-air tank firing at a jet"><div class="shot"><img src="img/projects/realsteel-gepard.jpg" alt="Gepard anti-air tank firing at a jet" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Jets flying low over the town"><div class="shot"><img src="img/projects/realsteel-low-pass.jpg" alt="Jets flying low over the town" loading="lazy"></div></figure>
+          <figure class="carousel-slide" data-caption="Infantry hitting a tank with a launcher"><div class="shot"><img src="img/projects/realsteel-ambush.jpg" alt="Infantry hitting a tank with a launcher" loading="lazy"></div></figure>
+        </div>
+        <div class="flex items-center gap-2 border-t border-line p-3">
+          <button type="button" data-prev class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Previous photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button type="button" data-next class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line text-ink hover:border-mark hover:text-mark" aria-label="Next photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <span data-count class="shrink-0 font-mono text-xs tabular-nums text-dim"></span>
+          <p data-caption-text class="min-w-0 text-sm text-dim" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Drawing title block -->
+  <footer class="overflow-x-auto">
+    <table class="w-full min-w-[520px] border-collapse border border-line bg-panel font-mono text-[11px] uppercase tracking-[0.08em]">
+      <tr>
+        <td class="border border-line p-2 align-top" rowspan="2"><span class="block text-dim">Title</span><span class="font-display text-lg normal-case tracking-normal text-ink">Mason Headley · Projects</span></td>
+        <td class="border border-line p-2"><span class="block text-dim">Drawn by</span><span class="text-ink">M. Headley</span></td>
+        <td class="border border-line p-2"><span class="block text-dim">Sheet</span><span class="text-ink">2 of 3</span></td>
+      </tr>
+      <tr>
+        <td class="border border-line p-2"><span class="block text-dim">Grad (expected)</span><span class="text-mark">Spring 2028</span></td>
+        <td class="border border-line p-2"><span class="block text-dim">Rev</span><span class="text-ink">D · Oct 2026</span></td>
+      </tr>
+    </table>
+  </footer>
+</main>
+
+<script src="js/site.js"></script>
+</body>
+</html>

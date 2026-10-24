@@ -1,126 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mason Headley</title>
 <meta name="description" content="Mason Headley, Electrical Engineering student at the University of Georgia. Avionics, electrical systems, and aerospace projects.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          sheet: 'var(--sheet)',
-          panel: 'var(--panel)',
-          ink: 'var(--ink)',
-          dim: 'var(--dim)',
-          line: 'var(--line)',
-          mark: 'var(--mark)',
-        },
-        fontFamily: {
-          display: ['"Barlow Condensed"', '"Arial Narrow"', 'sans-serif'],
-          sans: ['"IBM Plex Sans"', '"Segoe UI"', 'system-ui', 'sans-serif'],
-          mono: ['"IBM Plex Mono"', 'ui-monospace', 'Menlo', 'monospace'],
-        },
-      },
-    },
-  };
-</script>
-<style>
-  /* Layout: a dark drafting sheet. Grid paper ground, a sticky title bar, one content column, and a drawing title block as the footer.
-     Single dark theme by design. */
-  :root {
-    --sheet: #15171a;      /* graphite drafting film */
-    --panel: #1c1f23;
-    --ink: #e7e3d8;        /* pencil-white linework */
-    --dim: #9a9a92;
-    --line: #34383e;
-    --grid: rgba(231, 227, 216, 0.045);
-    --grid-major: rgba(231, 227, 216, 0.085);
-    --mark: #e3a53c;       /* drafting amber, used for callouts */
-    color-scheme: dark;
-  }
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body {
-    background-color: var(--sheet);
-    background-image:
-      linear-gradient(var(--grid-major) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
-    color: var(--ink);
-    font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-  }
-  .gutter {
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-  }
-  section[id] { scroll-margin-top: 84px; }
-  h1, h2, h3 { text-wrap: balance; }
-  :focus-visible { outline: 2px solid var(--mark); outline-offset: 3px; }
-
-  /* Section heading drawn as a dimension line: |<—— label ——>| */
-  .dim-head { display: flex; align-items: center; gap: 12px; }
-  .dim-head::before, .dim-head::after {
-    content: ""; flex: 1; height: 1px; background: var(--dim); opacity: .55;
-  }
-  .dim-head::before { max-width: 28px; }
-  .dim-wrap { position: relative; padding-inline: 8px; }
-  .dim-wrap::before, .dim-wrap::after {
-    content: ""; position: absolute; top: 50%; width: 1px; height: 18px; background: var(--dim); opacity: .55; transform: translateY(-50%);
-  }
-  .dim-wrap::before { left: 0; }
-  .dim-wrap::after { right: 0; }
-
-  /* Corner registration ticks on drawn frames */
-  .frame { position: relative; border: 1px solid var(--line); background: var(--panel); }
-  .frame::before, .frame::after {
-    content: ""; position: absolute; width: 10px; height: 10px; border-color: var(--mark); border-style: solid; pointer-events: none;
-  }
-  .frame::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-  .frame::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
-
-  /* Phones: the photo fills the top of the header and fades out behind the text.
-     Wider screens: the photo fills the whole header behind the text. */
-  .hero-shade { background: linear-gradient(to top, var(--sheet) 0%, var(--sheet) 30%, rgba(21,23,26,.55) 48%, rgba(21,23,26,0) 62%, rgba(21,23,26,.3) 100%); }
-  #slides { -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent); mask-image: linear-gradient(to bottom, #000 75%, transparent); }
-  @media (min-width: 768px) {
-    #slides { -webkit-mask-image: none; mask-image: none; }
-    .hero-shade {
-      background:
-        linear-gradient(to top, var(--sheet) 0%, rgba(21,23,26,.75) 30%, rgba(21,23,26,.1) 65%, rgba(21,23,26,.3) 100%),
-        linear-gradient(to right, rgba(21,23,26,.6) 0%, rgba(21,23,26,.2) 50%, rgba(21,23,26,0) 75%),
-        linear-gradient(var(--grid-major) 1px, transparent 1px) 0 0 / 120px 120px,
-        linear-gradient(90deg, var(--grid-major) 1px, transparent 1px) 0 0 / 120px 120px;
-    }
-  }
-  #top h1, #top p { text-shadow: 0 1px 12px rgba(0,0,0,.65); }
-  .slide { transition: opacity 1.2s ease; }
-  /* Each photo fills the header, cropped around its own focus point (set per photo in the script),
-     with separate points for phone (tall) and wider (wide) screens. */
-  .slide-fg { object-fit: cover; object-position: var(--fp-tall, center); }
-  @media (min-width: 768px) { .slide-fg { object-position: var(--fp-wide, center); } }
-  @media (prefers-reduced-motion: reduce) { .slide { transition: none; } }
-</style>
+<script src="js/tw-config.js"></script>
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
 
 <!-- Title bar -->
 <header class="sticky z-40 border-b border-line bg-sheet" style="top: env(safe-area-inset-top, 0px)">
   <div class="gutter mx-auto flex h-16 max-w-6xl items-center justify-between gap-4">
-    <a href="#top" class="flex items-baseline gap-3 no-underline">
+    <a href="index.html" class="flex items-baseline gap-3 no-underline">
       <span class="font-display text-2xl font-bold uppercase tracking-wide text-ink">Mason Headley</span>
       <span class="hidden font-mono text-[11px] uppercase tracking-[0.14em] text-dim sm:inline">B.S. EE · UGA · 2028</span>
     </a>
-    <nav class="hidden md:block" aria-label="Sections">
+    <nav class="hidden md:block" aria-label="Site">
       <ul class="flex items-center gap-1 font-mono text-[13px] uppercase tracking-[0.1em]">
-        <li><a class="nav-link rounded px-3 py-2 text-dim hover:text-ink" href="#experience">Experience</a></li>
-        <li><a class="nav-link rounded px-3 py-2 text-dim hover:text-ink" href="#projects">Projects</a></li>
-        <li><a class="nav-link rounded px-3 py-2 text-dim hover:text-ink" href="#education">Education</a></li>
-        <li><a class="nav-link rounded px-3 py-2 text-dim hover:text-ink" href="#skills">Skills</a></li>
-        <li><a class="ml-2 rounded border border-mark px-3 py-2 text-mark hover:bg-mark hover:text-sheet" href="#contact">Contact</a></li>
+        <li><a class="nav-link rounded px-3 py-2 text-dim hover:text-ink" href="#experience" data-section="experience">Experience</a></li>
+        <li><a class="rounded px-3 py-2 text-dim hover:text-ink" href="projects.html">Projects</a></li>
+        <li><a class="nav-link rounded px-3 py-2 text-dim hover:text-ink" href="#education" data-section="education">Education</a></li>
+        <li><a class="nav-link rounded px-3 py-2 text-dim hover:text-ink" href="#skills" data-section="skills">Skills</a></li>
+        <li><a class="ml-2 rounded border border-mark px-3 py-2 text-mark hover:bg-mark hover:text-sheet" href="contact.html">Contact</a></li>
       </ul>
     </nav>
     <button id="menu-btn" type="button" class="md:hidden -mr-2 flex h-11 w-11 items-center justify-center rounded text-ink" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -128,13 +35,13 @@
       <svg id="icon-close" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
   </div>
-  <nav id="mobile-menu" class="hidden border-t border-line bg-sheet md:hidden" aria-label="Sections">
+  <nav id="mobile-menu" class="hidden border-t border-line bg-sheet md:hidden" aria-label="Site">
     <ul class="gutter flex flex-col py-2 font-mono text-sm uppercase tracking-[0.1em]">
       <li><a class="block py-3 text-ink" href="#experience">Experience</a></li>
-      <li><a class="block border-t border-line py-3 text-ink" href="#projects">Projects</a></li>
+      <li><a class="block border-t border-line py-3 text-ink" href="projects.html">Projects</a></li>
       <li><a class="block border-t border-line py-3 text-ink" href="#education">Education</a></li>
       <li><a class="block border-t border-line py-3 text-ink" href="#skills">Skills</a></li>
-      <li><a class="block border-t border-line py-3 text-mark" href="#contact">Contact</a></li>
+      <li><a class="block border-t border-line py-3 text-mark" href="contact.html">Contact</a></li>
     </ul>
   </nav>
 </header>
@@ -165,7 +72,6 @@
 </section>
 
 <main class="gutter mx-auto flex max-w-6xl flex-col gap-20 pb-16 pt-16">
-
 
   <!-- Experience -->
   <section id="experience" class="flex flex-col gap-8">
@@ -219,55 +125,106 @@
     </div>
   </section>
 
-  <!-- Projects -->
+  <!-- Projects: short cards that open the Projects page at that project -->
   <section id="projects" class="flex flex-col gap-8">
     <h2 class="dim-head"><span class="dim-wrap font-display text-3xl font-semibold uppercase tracking-wide">Projects</span></h2>
-    <article class="frame grid gap-5 p-5 sm:p-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-      <div class="flex min-w-0 flex-col gap-3">
-        <div class="flex flex-wrap items-center gap-3">
-          <h3 class="font-display text-3xl font-semibold">AI smart room assistant &amp; sound system</h3>
-          <span class="rounded-full border border-mark px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-mark">In progress</span>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <a href="projects.html#ember" class="frame group flex flex-col no-underline transition-colors hover:border-mark">
+        <div class="aspect-[4/3] overflow-hidden bg-[var(--well)]"><img src="img/projects/ember-hardware.jpg" alt="" loading="lazy" class="h-full w-full object-cover"></div>
+        <div class="flex flex-1 flex-col gap-2 border-t border-line p-5">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="font-display text-2xl font-semibold text-ink group-hover:text-mark">Ember: robot dragon room assistant</h3>
+            <span class="rounded-full border border-mark px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-mark">Working prototype</span>
+          </div>
+          <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Personal project · Started Oct 2026</p>
+          <p class="text-sm text-ink">A voice-controlled room assistant on a Raspberry Pi 5 that runs speech, a language model and text-to-speech on home hardware.</p>
+          <span class="mt-auto pt-2 font-mono text-xs uppercase tracking-[0.1em] text-mark">View project →</span>
         </div>
-        <p>A room assistant built on a Raspberry Pi 5 with a Camera Module 3 NoIR for night vision. It uses computer vision and facial recognition, and an AI language model running on the Pi gives me reminders, holds conversations, and helps me build better habits. It also monitors the room and sends me alerts on activity while I’m away.</p>
-      </div>
-      <dl class="grid content-start grid-cols-2 gap-px self-start border border-line bg-line font-mono text-[11px] uppercase tracking-[0.08em]">
-        <div class="bg-panel p-3"><dt class="text-dim">Compute</dt><dd class="mt-1 normal-case tracking-normal text-ink">Raspberry Pi 5</dd></div>
-        <div class="bg-panel p-3"><dt class="text-dim">Camera</dt><dd class="mt-1 normal-case tracking-normal text-ink">Module 3 NoIR</dd></div>
-        <div class="bg-panel p-3"><dt class="text-dim">Vision</dt><dd class="mt-1 normal-case tracking-normal text-ink">Facial recognition</dd></div>
-        <div class="bg-panel p-3"><dt class="text-dim">AI</dt><dd class="mt-1 normal-case tracking-normal text-ink">LLM on the Pi</dd></div>
-      </dl>
-    </article>
-    <div class="grid gap-5 md:grid-cols-2">
-      <article class="frame flex flex-col gap-3 p-5">
-        <div class="flex flex-wrap items-center justify-between gap-2">
-          <h3 class="font-display text-2xl font-semibold">AIAA RC Planes Club</h3>
-          <span class="rounded-full border border-mark px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-mark">Ongoing</span>
+      </a>
+      <a href="projects.html#airboat" class="frame group flex flex-col no-underline transition-colors hover:border-mark">
+        <div class="aspect-[4/3] overflow-hidden bg-[var(--well)]"><img src="img/projects/airboat-v1-1.jpg" alt="" loading="lazy" class="h-full w-full object-cover"></div>
+        <div class="flex flex-1 flex-col gap-2 border-t border-line p-5">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="font-display text-2xl font-semibold text-ink group-hover:text-mark">RC airboat</h3>
+            <span class="rounded-full border border-mark px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-mark">V2 in design</span>
+          </div>
+          <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Personal project · SolidWorks, 3D printing</p>
+          <p class="text-sm text-ink">Twin-hull tunnel catamaran I designed in SolidWorks and 3D printed, now on its second hull revision.</p>
+          <span class="mt-auto pt-2 font-mono text-xs uppercase tracking-[0.1em] text-mark">View project →</span>
         </div>
-        <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Team Lead · 3 years</p>
-        <p>Put in charge of the club after one semester as a member. I reworked how the club runs to draw in more members and teach more UGA students about RC planes, real-world design, avionics, and structures. Active membership grew from 5 to more than 30.</p>
-      </article>
-      <article class="frame flex flex-col gap-3 p-5">
-        <h3 class="font-display text-2xl font-semibold">AIAA Design/Build/Fly</h3>
-        <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Avionics Sub-Team Lead</p>
-        <p>Collaborated on avionics design and testing.</p>
-      </article>
-    </div>
-    <div class="flex flex-col gap-4">
-      <h3 class="font-mono text-xs uppercase tracking-[0.12em] text-dim">RC builds</h3>
-      <div class="grid gap-5 md:grid-cols-3">
-        <article class="frame flex flex-col gap-2 p-5">
-          <h4 class="font-display text-xl font-semibold">RC airboat</h4>
-          <p class="text-sm">Building and 3D printing an RC airboat.</p>
-        </article>
-        <article class="frame flex flex-col gap-2 p-5">
-          <h4 class="font-display text-xl font-semibold">RC plane avionics &amp; FPV</h4>
-          <p class="text-sm">Building and installing the avionics and an FPV system in an RC plane.</p>
-        </article>
-        <article class="frame flex flex-col gap-2 p-5">
-          <h4 class="font-display text-xl font-semibold">RC trucks</h4>
-          <p class="text-sm">Building, modifying, and racing RC trucks.</p>
-        </article>
-      </div>
+      </a>
+      <a href="projects.html#rc-planes-club" class="frame group flex flex-col no-underline transition-colors hover:border-mark">
+        <div class="aspect-[4/3] overflow-hidden bg-[var(--well)]"><img src="img/photo-02.jpg" alt="" loading="lazy" class="h-full w-full object-cover"></div>
+        <div class="flex flex-1 flex-col gap-2 border-t border-line p-5">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="font-display text-2xl font-semibold text-ink group-hover:text-mark">AIAA RC Planes Club</h3>
+            <span class="rounded-full border border-mark px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-mark">Ongoing</span>
+          </div>
+          <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Team Lead · 3 years</p>
+          <p class="text-sm text-ink">Put in charge after one semester. Reworked how the club runs and grew active membership from 5 to more than 30.</p>
+          <span class="mt-auto pt-2 font-mono text-xs uppercase tracking-[0.1em] text-mark">View project →</span>
+        </div>
+      </a>
+      <a href="projects.html#design-build-fly" class="frame group flex flex-col no-underline transition-colors hover:border-mark">
+        <div class="aspect-[4/3] overflow-hidden bg-[var(--well)]"><img src="img/projects/dbf-banner-test.jpg" alt="" loading="lazy" class="h-full w-full object-cover"></div>
+        <div class="flex flex-1 flex-col gap-2 border-t border-line p-5">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="font-display text-2xl font-semibold text-ink group-hover:text-mark">AIAA Design/Build/Fly</h3>
+            
+          </div>
+          <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Avionics Sub-Team Lead</p>
+          <p class="text-sm text-ink">Collaborated on avionics design and testing.</p>
+          <span class="mt-auto pt-2 font-mono text-xs uppercase tracking-[0.1em] text-mark">View project →</span>
+        </div>
+      </a>
+      <a href="projects.html#rc-plane-fpv" class="frame group flex flex-col no-underline transition-colors hover:border-mark">
+        <div class="aspect-[4/3] overflow-hidden bg-[var(--well)]"><img src="img/projects/fpv-plane-printed-kit.jpg" alt="" loading="lazy" class="h-full w-full object-cover"></div>
+        <div class="flex flex-1 flex-col gap-2 border-t border-line p-5">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="font-display text-2xl font-semibold text-ink group-hover:text-mark">RC plane avionics &amp; FPV</h3>
+            
+          </div>
+          <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Personal project</p>
+          <p class="text-sm text-ink">Avionics and FPV in two planes: a large twin-engine build and a P-40 with an onboard camera.</p>
+          <span class="mt-auto pt-2 font-mono text-xs uppercase tracking-[0.1em] text-mark">View project →</span>
+        </div>
+      </a>
+      <a href="projects.html#rc-trucks" class="frame group flex flex-col no-underline transition-colors hover:border-mark">
+        <div class="aspect-[4/3] overflow-hidden bg-[var(--well)]"><img src="img/projects/truck-raptor-body.jpg" alt="" loading="lazy" class="h-full w-full object-cover"></div>
+        <div class="flex flex-1 flex-col gap-2 border-t border-line p-5">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="font-display text-2xl font-semibold text-ink group-hover:text-mark">RC trucks</h3>
+            
+          </div>
+          <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Personal project</p>
+          <p class="text-sm text-ink">New electronics and a painted body on a Dominus 4x4, and a motor and differential rebuild on a Wheelie King.</p>
+          <span class="mt-auto pt-2 font-mono text-xs uppercase tracking-[0.1em] text-mark">View project →</span>
+        </div>
+      </a>
+      <a href="projects.html#3d-printed-props" class="frame group flex flex-col no-underline transition-colors hover:border-mark">
+        <div class="aspect-[4/3] overflow-hidden bg-[var(--well)]"><img src="img/projects/helmet-sinker-phase2.jpg" alt="" loading="lazy" class="h-full w-full object-cover"></div>
+        <div class="flex flex-1 flex-col gap-2 border-t border-line p-5">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="font-display text-2xl font-semibold text-ink group-hover:text-mark">3D printing props</h3>
+            
+          </div>
+          <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Personal project · 3D printing, finishing, painting</p>
+          <p class="text-sm text-ink">Clone trooper and Helldivers helmets and a Titanfall 2 R-201, printed from downloaded models, then finished and painted.</p>
+          <span class="mt-auto pt-2 font-mono text-xs uppercase tracking-[0.1em] text-mark">View project →</span>
+        </div>
+      </a>
+      <a href="projects.html#realsteel" class="frame group flex flex-col no-underline transition-colors hover:border-mark">
+        <div class="aspect-[4/3] overflow-hidden bg-[var(--well)]"><img src="img/projects/realsteel-dusk-gun.jpg" alt="" loading="lazy" class="h-full w-full object-cover"></div>
+        <div class="flex flex-1 flex-col gap-2 border-t border-line p-5">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="font-display text-2xl font-semibold text-ink group-hover:text-mark">REALSTEEL</h3>
+            <span class="rounded-full border border-mark px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-mark">In progress</span>
+          </div>
+          <p class="font-mono text-xs uppercase tracking-[0.1em] text-dim">Personal project · Game design and direction · Godot</p>
+          <p class="text-sm text-ink">An online team tank game I designed and directed in Godot, coded with an AI assistant as a creative exercise.</p>
+          <span class="mt-auto pt-2 font-mono text-xs uppercase tracking-[0.1em] text-mark">View project →</span>
+        </div>
+      </a>
     </div>
   </section>
 
@@ -338,12 +295,15 @@
   <!-- Contact -->
   <section id="contact" class="flex flex-col gap-8">
     <h2 class="dim-head"><span class="dim-wrap font-display text-3xl font-semibold uppercase tracking-wide">Contact</span></h2>
-    <div class="frame flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-      <div class="flex min-w-0 flex-col gap-1">
-        <span class="font-mono text-[11px] uppercase tracking-[0.1em] text-dim">Email</span>
-        <span id="email" class="select-all break-all font-mono text-lg text-ink">mason.headley2022@gmail.com</span>
+    <div class="frame flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+      <div class="flex flex-col gap-1">
+        <p class="font-display text-2xl font-semibold">Let’s talk about internships and engineering roles.</p>
+        <p class="text-sm text-dim">Email, LinkedIn, GitHub, my resume, and a message form are on the contact page.</p>
       </div>
-      <button id="copy-email" type="button" class="self-start rounded border border-mark px-4 py-2 font-mono text-sm uppercase tracking-[0.1em] text-mark hover:bg-mark hover:text-sheet sm:self-auto">Copy email</button>
+      <div class="flex flex-wrap gap-3">
+        <a href="contact.html" class="rounded border border-mark bg-mark px-5 py-2.5 font-mono text-sm uppercase tracking-[0.1em] text-sheet hover:bg-transparent hover:text-mark">Contact me</a>
+        <a href="Mason_Headley_Resume.pdf" download class="rounded border border-line px-5 py-2.5 font-mono text-sm uppercase tracking-[0.1em] text-ink hover:border-mark hover:text-mark">Resume (PDF)</a>
+      </div>
     </div>
   </section>
 
@@ -353,139 +313,16 @@
       <tr>
         <td class="border border-line p-2 align-top" rowspan="2"><span class="block text-dim">Title</span><span class="font-display text-lg normal-case tracking-normal text-ink">Mason Headley · Electrical Engineering</span></td>
         <td class="border border-line p-2"><span class="block text-dim">Drawn by</span><span class="text-ink">M. Headley</span></td>
-        <td class="border border-line p-2"><span class="block text-dim">School</span><span class="text-ink">Univ. of Georgia</span></td>
+        <td class="border border-line p-2"><span class="block text-dim">Sheet</span><span class="text-ink">1 of 3</span></td>
       </tr>
       <tr>
         <td class="border border-line p-2"><span class="block text-dim">Grad (expected)</span><span class="text-mark">Spring 2028</span></td>
-        <td class="border border-line p-2"><span class="block text-dim">Rev</span><span class="text-ink">C · Oct 2026</span></td>
+        <td class="border border-line p-2"><span class="block text-dim">Rev</span><span class="text-ink">D · Oct 2026</span></td>
       </tr>
     </table>
   </footer>
 </main>
 
-<script>
-  // Mobile menu
-  (function () {
-    var btn = document.getElementById('menu-btn');
-    var menu = document.getElementById('mobile-menu');
-    var open = document.getElementById('icon-open');
-    var close = document.getElementById('icon-close');
-    function set(isOpen) {
-      menu.classList.toggle('hidden', !isOpen);
-      open.classList.toggle('hidden', isOpen);
-      close.classList.toggle('hidden', !isOpen);
-      btn.setAttribute('aria-expanded', String(isOpen));
-      btn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-    }
-    btn.addEventListener('click', function () { set(menu.classList.contains('hidden')); });
-    menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
-    window.addEventListener('resize', function () { if (window.innerWidth >= 768) set(false); });
-  })();
-
-  // Highlight the nav link for the section in view
-  (function () {
-    var links = document.querySelectorAll('.nav-link');
-    if (!('IntersectionObserver' in window)) return;
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        links.forEach(function (l) {
-          var on = l.getAttribute('href') === '#' + e.target.id;
-          l.classList.toggle('text-mark', on);
-          l.classList.toggle('text-dim', !on);
-        });
-      });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    ['experience', 'projects', 'education', 'skills'].forEach(function (id) {
-      var el = document.getElementById(id); if (el) obs.observe(el);
-    });
-  })();
-
-  // Background slideshow
-  (function () {
-    // [file, focus on phones, focus on wider screens] keeps the whole subject in frame when cropped
-    var photos = [
-      ['img/photo-01.jpg', '55% 50%', '50% 50%'],
-      ['img/photo-02.jpg', '50% 50%', '50% 52%'],
-      ['img/photo-03.jpg', '30% 60%', '50% 88%'],
-      ['img/photo-04.jpg', '55% 50%', '50% 48%'],
-      ['img/photo-05.jpg', '50% 40%', '50% 32%'],
-      ['img/photo-06.jpg', '50% 40%', '50% 32%'],
-      ['img/photo-07.jpg', '35% 50%', '50% 40%'],
-      ['img/photo-08.jpg', '55% 40%', '50% 30%'],
-      ['img/photo-09.jpg', '45% 50%', '50% 42%'],
-      ['img/photo-10.jpg', '50% 60%', '50% 62%'],
-      ['img/photo-11.jpg', '50% 45%', '50% 22%'],
-      ['img/photo-12.jpg', '35% 40%', '50% 45%']
-    ];
-    var box = document.getElementById('slides');
-    var hero = document.getElementById('top');
-    var counter = document.getElementById('counter');
-    var pauseBtn = document.getElementById('pause');
-    var icPause = document.getElementById('ic-pause');
-    var icPlay = document.getElementById('ic-play');
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var i = 0, timer = null, playing = !reduce, slides = [];
-
-    photos.forEach(function (p, n) {
-      var img = document.createElement('img');
-      img.src = p[0]; img.alt = '';
-      img.className = 'slide slide-fg absolute inset-0 h-full w-full ' + (n === 0 ? 'opacity-100' : 'opacity-0');
-      img.style.setProperty('--fp-tall', p[1]);
-      img.style.setProperty('--fp-wide', p[2]);
-      if (n > 1) img.loading = 'lazy';
-      box.appendChild(img); slides.push(img);
-    });
-
-    function pad(n) { return (n < 10 ? '0' : '') + n; }
-    function go(n) {
-      slides[i].classList.replace('opacity-100', 'opacity-0');
-      i = (n + slides.length) % slides.length;
-      slides[i].classList.replace('opacity-0', 'opacity-100');
-      counter.textContent = pad(i + 1) + ' / ' + pad(slides.length);
-    }
-    function restart() {
-      clearInterval(timer);
-      if (playing) timer = setInterval(function () { go(i + 1); }, 6000);
-    }
-    function setPlaying(p) {
-      playing = p;
-      icPause.classList.toggle('hidden', !p);
-      icPlay.classList.toggle('hidden', p);
-      pauseBtn.setAttribute('aria-label', p ? 'Pause photos' : 'Play photos');
-      restart();
-    }
-    document.getElementById('prev').addEventListener('click', function () { go(i - 1); restart(); });
-    document.getElementById('next').addEventListener('click', function () { go(i + 1); restart(); });
-    pauseBtn.addEventListener('click', function () { setPlaying(!playing); });
-
-    var x0 = null;
-    hero.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
-    hero.addEventListener('touchend', function (e) {
-      if (x0 === null) return;
-      var dx = e.changedTouches[0].clientX - x0;
-      if (Math.abs(dx) > 50) { go(dx < 0 ? i + 1 : i - 1); restart(); }
-      x0 = null;
-    });
-    setPlaying(playing);
-  })();
-
-  // Copy email
-  (function () {
-    var btn = document.getElementById('copy-email');
-    var email = document.getElementById('email');
-    btn.addEventListener('click', function () {
-      function selectIt() {
-        var r = document.createRange(); r.selectNodeContents(email);
-        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-        btn.textContent = 'Selected, press Ctrl+C';
-      }
-      try {
-        navigator.clipboard.writeText(email.textContent.trim()).then(function () {
-          btn.textContent = 'Copied';
-          setTimeout(function () { btn.textContent = 'Copy email'; }, 1800);
-        }, selectIt);
-      } catch (e) { selectIt(); }
-    });
-  })();
-</script>
+<script src="js/site.js"></script>
+</body>
+</html>
